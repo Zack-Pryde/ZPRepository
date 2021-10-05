@@ -1,5 +1,5 @@
 ---
-  title: "Master script for postfire analysis"
+title: "Master script for postfire analysis"
 output: html_document
 ---
   
