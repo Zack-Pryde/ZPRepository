@@ -32,7 +32,8 @@ plot.NDVI(dat)
   
   Q1: This plot suggests that Fynbos greenness (NDVI) as observed from satellite saturates with time since fire. Why do you think it saturates rather than increasing linearly with time?
   
-  >*Answer 1:*
+  > In this context, we need to consider the environment subject to fire. In the fynbos environment, there are typical post-fire succession trends that are often distinct to the landscape. Generally, in the immediate post-fire environment, there are a number of legume species that quickly capitalize on the relatively nutrient-rich soils resulting from a fire. As time passes, plant succession in the post-fire environment varies, and eventually the landscape is once again populated by the next generation of fynbos flora. I suggest that this may be a reason for the NDVI saturation seen in the above plot. Greenness of flora in the post-fire environment may vary due to growth-form successional trends (as mentioned above) - and in this case - the early post-fire environment sees a relatively steep increase in NDVI values, and thereafter the gradual accumulation of the next fynbos generation sees a less rapid increase in greenness. Vegetation in the immediate post-fire environment may have different light reflectance proporties to that of the vegetation in the distant post-fire environment (i.e. proporties associated with legume species Vs fynbos species).  
+  This may also relate to the groundcover growth density of flora in the post-fire environment. For example, in the immediate post-fire environment, soil may be considered more nutrient-rich, and hence the species capitalizing on this may populate the landscape densely at a fast rate. As time passes, soil gradually returns to its nutrient-poor status, which in turn, limits the types of species that are able to persist, and consequently lowers the rate of groundcover growth in the environment.  
   
   <br>
   
@@ -99,7 +100,10 @@ summary(fit_negexpS)
 
 Q2: How do the estimates for the common parameters compare?
   
-  >*Answer 2:*
+  > In the simple model, the estimate of alpha ($\alpha$) is larger than in the full model (difference $\approx 0.043$).  
+    In the simple model, the estimate of gamma ($\gamma$) is smaller than in the full model (difference $\approx -0.041$).  
+    In the simple model, the estimate of lambda ($\lambda$) is larger than in the full model (difference $\approx 0.188$).  
+    The values of parameter estimates are different for the full model as it has two additional parameters that are describing how NDVI changes with time
   
   <br>
   
@@ -117,11 +121,12 @@ anova(fit_negexp, fit_negexpS)
   
   Q3: Which model is better?
   
-  >*Answer 3:*
+  > Model 2 (the full model).  
+    The addition of parameters ($A$ and $\phi$) to model 1 (the simple model) results in a significant reduction in the residual sums of squares ($p<0.0001$). This suggests that model 2 (the full model) is better at capturing the data, and hence is the better model of the two.
   
   Q4: How many degrees of freedom are there in this ANOVA and why (i.e. what are they)?
   
-  >*Answer 4:*
+  > There are two degrees of freedom in this Analysis Of Variance. This ANOVA uses the two model objects (which are nested models) to test whether the addition of parameters to the simple model results in a significant reduction in the residual sum of squares. The degrees of freedom is the difference in number of parameters between the models (i.e. the number of parameters added to the simple model, which are $A$ and $\phi$).
   
   <br>
   
@@ -214,7 +219,10 @@ AIC_simple - AIC_full
 
 Q5: Is there a preferred model and if so, which one?
 
->*Answer 5:*
+> Yes. Model 2 (the full model).  
+  The full model has a lower AIC value ($AIC = 451155.3$) than that of the simple model ($AIC = 718113.1$).  
+  The difference in AIC values between the simple and full model ($AIC_{simple} - AIC_{full} = 266957.8$) indicates that the result is significant (a difference in AIC $\ge 3$ is analagous to the models being significantly different at an $\alpha$ of $p < 0.05$).
+
 
 <br>
 
@@ -232,6 +240,6 @@ You'll notice that these are completely different to the AICs for the MLE models
 
 Q6: Why is it not okay to compare the AIC of these NLS models with the AIC of the MLE models? Hint: type `?AIC` into the R console and do some reading.
 
->*Answer 6:*
+> The theory of Akaike's Information Criterion requires that the log-likelihood has been maximized. Although AIC values can be computed for models that are not fitted by maximum likelihood, these should not be compared. The Nonlinear Least Squares (NLS) models are not considered to be fitted to the same data as the response variable has been transformed via a link function.
   
   <br>
